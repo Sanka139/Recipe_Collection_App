@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bg_dark"
     tools:context=".MainActivity">
 
     <TextView
@@ -24,7 +25,11 @@
         android:layout_marginTop="150dp"
         android:ems="10"
         android:hint="Full Name"
-        android:inputType="text" />
+        android:inputType="text"
+
+        android:textColor="@color/text_white"
+        android:textColorHint="@color/text_gray"
+        android:backgroundTint="@color/text_gray"/>/>
 
     <EditText
         android:id="@+id/etRegEmail"
@@ -34,7 +39,11 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Email Address"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+
+        android:textColor="@color/text_white"
+        android:textColorHint="@color/text_gray"
+        android:backgroundTint="@color/text_gray"/>/>
 
     <EditText
         android:id="@+id/etRegPassword"
@@ -44,7 +53,11 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+
+        android:textColor="@color/text_white"
+        android:textColorHint="@color/text_gray"
+        android:backgroundTint="@color/text_gray"/>/>
 
     <Button
         android:id="@+id/btnRegister"
