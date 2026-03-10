@@ -5,7 +5,7 @@ Recipe Collection App is an Android mobile application that allows users to stor
 
 ## Features
 - User Registration & Login
-- Secure password storage (hashed)
+- Secure password storage
 - Add recipes with ingredients and steps
 - View personal recipe list
 - Edit and delete existing recipes
