@@ -11,36 +11,6 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/img8" />
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_dark_main">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img8" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#CC000000" /> <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Recipes"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:fontFamily="serif"
-        android:textColor="@color/text_primary"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal"/>
 
     <View
         android:layout_width="match_parent"
@@ -51,11 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="24dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:padding="24dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,13 +47,5 @@
             tools:listitem="@layout/list_item_recipe" />
 
     </LinearLayout>
-        android:divider="@android:color/transparent"
-        android:dividerHeight="12dp"
-        android:scrollbars="none"
-        android:clipToPadding="false"
-        android:paddingBottom="20dp"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:listitem="@layout/list_item_recipe" />
 
-</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
