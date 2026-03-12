@@ -2,8 +2,10 @@ package com.example.recipe_app;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ViewRecipeActivity extends AppCompatActivity {
 
     TextView tvName, tvSteps, tvTime, tvIngredients, tvComment;
+    ImageView ivRecipe;
     Button btnEdit, btnDelete;
     DBHandler dbHandler;
     String currentRecipeName;
@@ -23,16 +26,14 @@ public class ViewRecipeActivity extends AppCompatActivity {
         dbHandler = new DBHandler(this);
         currentRecipeName = getIntent().getStringExtra("RECIPE_NAME");
 
-        // Initialize Views
+        ivRecipe = findViewById(R.id.ivViewRecipeImage);
         tvName = findViewById(R.id.tvViewName);
         tvSteps = findViewById(R.id.tvViewSteps);
         tvTime = findViewById(R.id.tvViewTime);
         tvIngredients = findViewById(R.id.tvViewIngredients);
         tvComment = findViewById(R.id.tvViewComment);
-
-        // INITIALIZE BOTH BUTTONS HERE
         btnDelete = findViewById(R.id.btnDelete);
-        btnEdit = findViewById(R.id.btnEdit); // You were missing this line!
+        btnEdit = findViewById(R.id.btnEdit);
 
         if (currentRecipeName != null) {
             loadRecipeData();
@@ -54,7 +55,6 @@ public class ViewRecipeActivity extends AppCompatActivity {
         });
     }
 
-    // This method ensures the data refreshes when returning from the Edit screen
     @Override
     protected void onResume() {
         super.onResume();
@@ -71,6 +71,14 @@ public class ViewRecipeActivity extends AppCompatActivity {
             tvSteps.setText(cursor.getString(cursor.getColumnIndexOrThrow("instructions")));
             tvTime.setText(cursor.getString(cursor.getColumnIndexOrThrow("total_time")));
             tvComment.setText(cursor.getString(cursor.getColumnIndexOrThrow("user_comment")));
+
+            // පින්තූරය පෙන්වන කොටස
+            String imagePath = cursor.getString(cursor.getColumnIndexOrThrow("image_path"));
+            if (imagePath != null && !imagePath.equals("no_image")) {
+                ivRecipe.setImageURI(Uri.parse(imagePath));
+            } else {
+                ivRecipe.setImageResource(R.drawable.img3); // පින්තූරයක් නැතිනම් Default එකක්
+            }
             cursor.close();
         }
     }

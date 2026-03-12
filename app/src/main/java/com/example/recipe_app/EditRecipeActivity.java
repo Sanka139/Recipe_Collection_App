@@ -1,43 +1,60 @@
 package com.example.recipe_app;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EditRecipeActivity extends AppCompatActivity {
 
     EditText etName, etTime, etIngredients, etMethod, etComment;
-    Button btnSave;
+    Button btnSave, btnChangeImage;
+    ImageView ivRecipeImage;
     DBHandler dbHandler;
     String recipeNameToEdit;
+
+    // දැනට තියෙන පින්තූරේ හෝ අලුතෙන් තෝරන පින්තූරේ URI එක තියාගන්න
+    Uri selectedImageUri = null;
+    private static final int PICK_IMAGE_REQUEST = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Using the same layout as Add Recipe since they are visually identical
+        // Add Recipe එකේ Layout එකම පාවිච්චි කරනවා
         setContentView(R.layout.activity_add_recipe);
 
         dbHandler = new DBHandler(this);
-
-        // Get the name passed from the View Recipe screen
         recipeNameToEdit = getIntent().getStringExtra("RECIPE_NAME");
 
-        // Initialize UI components
-        etName = findViewById(R.id.etName);
-        etTime = findViewById(R.id.etTime);
-        etIngredients = findViewById(R.id.etIngredients);
-        etMethod = findViewById(R.id.etMethod);
-        etComment = findViewById(R.id.etComment);
-        btnSave = findViewById(R.id.btnSave);
+        // XML එකේ තියෙන අලුත් IDs වලට ගැලපෙන්න UI Components Initialize කිරීම
+        etName = findViewById(R.id.etRecipeName);
+        etTime = findViewById(R.id.etRecipeTime);
+        etIngredients = findViewById(R.id.etRecipeIngredients);
+        etMethod = findViewById(R.id.etRecipeSteps);
+        etComment = findViewById(R.id.etRecipeComment);
+        btnSave = findViewById(R.id.btnAddRecipe);
+        btnChangeImage = findViewById(R.id.btnAddImage);
+        ivRecipeImage = findViewById(R.id.ivRecipeImage);
 
-        // Change button text to "Save Changes" or "Update"
-        btnSave.setText("Save");
+        // බොත්තමේ නම වෙනස් කරනවා Update එකට ගැලපෙන්න
+        btnSave.setText("UPDATE RECIPE");
+        btnChangeImage.setText("CHANGE PHOTO");
 
-        // Pre-fill the fields with current database data
+        // දැනට තියෙන දත්ත පිරවීම (පින්තූරයත් සමඟ)
         loadCurrentData();
+
+        // පින්තූරය වෙනස් කිරීමේ බොත්තම
+        btnChangeImage.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        });
 
         btnSave.setOnClickListener(v -> {
             String newName = etName.getText().toString().trim();
@@ -46,15 +63,18 @@ public class EditRecipeActivity extends AppCompatActivity {
             String newMethod = etMethod.getText().toString().trim();
             String newComment = etComment.getText().toString().trim();
 
+            // පින්තූරයක් තෝරලා තියෙනවා නම් ඒක ගන්නවා, නැත්නම් "no_image" කියලා යවනවා
+            String imagePath = (selectedImageUri != null) ? selectedImageUri.toString() : "no_image";
+
             if (newName.isEmpty()) {
                 Toast.makeText(this, "Recipe name cannot be empty", Toast.LENGTH_SHORT).show();
             } else {
-                // Call update method in DBHandler
-                boolean isUpdated = dbHandler.updateRecipe(recipeNameToEdit, newName, newIng, newMethod, newTime, newComment);
+                // DBHandler එකේ updateRecipe මෙතඩ් එකට දත්ත යවනවා
+                boolean isUpdated = dbHandler.updateRecipe(recipeNameToEdit, newName, newIng, newMethod, newTime, newComment, imagePath);
 
                 if (isUpdated) {
                     Toast.makeText(this, "Recipe Updated Successfully!", Toast.LENGTH_SHORT).show();
-                    finish(); // Go back to previous screen
+                    finish();
                 } else {
                     Toast.makeText(this, "Update Failed", Toast.LENGTH_SHORT).show();
                 }
@@ -65,12 +85,29 @@ public class EditRecipeActivity extends AppCompatActivity {
     private void loadCurrentData() {
         Cursor cursor = dbHandler.getRecipeDetails(recipeNameToEdit);
         if (cursor != null && cursor.moveToFirst()) {
-            etName.setText(cursor.getString(1));        // Recipe name
-            etIngredients.setText(cursor.getString(2)); // Ingredients
-            etMethod.setText(cursor.getString(3));      // Methods
-            etTime.setText(cursor.getString(4));        // Time
-            etComment.setText(cursor.getString(5));     // Comment
+            // DBHandler එකේ තියෙන column names නිවැරදිද කියලා චෙක් කරගන්න
+            etName.setText(cursor.getString(cursor.getColumnIndexOrThrow("recipe_name")));
+            etIngredients.setText(cursor.getString(cursor.getColumnIndexOrThrow("ingredients")));
+            etMethod.setText(cursor.getString(cursor.getColumnIndexOrThrow("instructions")));
+            etTime.setText(cursor.getString(cursor.getColumnIndexOrThrow("total_time")));
+            etComment.setText(cursor.getString(cursor.getColumnIndexOrThrow("user_comment")));
+
+            // පින්තූරය පෙන්වීම
+            String imagePath = cursor.getString(cursor.getColumnIndexOrThrow("image_path"));
+            if (imagePath != null && !imagePath.equals("no_image")) {
+                selectedImageUri = Uri.parse(imagePath);
+                ivRecipeImage.setImageURI(selectedImageUri);
+            }
             cursor.close();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
+            selectedImageUri = data.getData();
+            ivRecipeImage.setImageURI(selectedImageUri);
         }
     }
 }
