@@ -22,11 +22,12 @@ Recipe Collection App is an Android mobile application that allows users to stor
 - recipes — stores recipe details linked to each user
 
 ## Team Members
-**| Name | Student ID | Index |**
-|------|------------||-------|
-| RSR Ranathunga  | ICT/2022/139 | 5740 |
-| DVTR Vitharana | ICT/2022/141 | 5742 |
-| Member 3 | XXXXXXXXX | Index |
+| Name           | Student ID   | Index Number |
+| -------------- | ------------ | ------------ |
+| RSR Ranathunga | ICT/2022/139 | 5740         |
+| DVTR Vitharana | ICT/2022/141 | 5742         |
+| Member 3       | XXXXXXXXX    | Index        |
+
 
 ## Module
 ICT3214 - Mobile Application Development
