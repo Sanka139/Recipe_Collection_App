@@ -1,111 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFD1D1"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/bg_dark_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Recipe"
-        android:textColor="#FF0000"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/GetStart" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000" /> <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/bg_white_container"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recipe Details"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:fontFamily="serif"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"/>
 
         <TextView
             android:id="@+id/tvViewName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recipe Name"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"/>
-
-        <TextView
-            android:id="@+id/tvViewSteps"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/bg_pink_rect"
-            android:padding="12dp"
-            android:text="Cooking steps go here..." />
+            android:layout_height="wrap_content"
+            android:text="Recipe Name Placeholder"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/accent_orange"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="24dp">
 
-            <TextView
-                android:id="@+id/tvViewTime"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginEnd="6dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_pink_rect"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="25 MIN" />
+                android:orientation="vertical"
+                android:background="@drawable/bg_glass_edittext"
+                android:padding="16dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/tvViewIngredients"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvViewTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25 MIN"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="6dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_pink_rect"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="Ingredients..." />
+                android:orientation="vertical"
+                android:background="@drawable/bg_glass_edittext"
+                android:padding="16dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredients"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvViewIngredients"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Details"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+            </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instructions"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvViewSteps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="120dp"
+            android:background="@drawable/bg_glass_edittext"
+            android:padding="16dp"
+            android:textColor="@color/text_secondary"
+            android:lineSpacingExtra="6dp"
+            android:textSize="15sp"
+            android:text="Cooking steps go here..."
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal Notes"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/tvViewComment"
             android:layout_width="match_parent"
-            android:layout_height="78dp"
-            android:background="@drawable/bg_pink_rect"
-            android:padding="12dp"
-            android:text="Your comment..." />
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:background="@drawable/bg_glass_edittext"
+            android:padding="16dp"
+            android:textColor="@color/text_secondary"
+            android:lineSpacingExtra="6dp"
+            android:textSize="15sp"
+            android:text="Your comment..."
+            android:layout_marginBottom="40dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="EDIT"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/accent_orange"
+                android:textColor="@color/text_primary"
+                app:cornerRadius="30dp"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="DELETE"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="#D32F2F"
+                android:textColor="@color/text_primary"
+                app:cornerRadius="30dp"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp">
-
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Edit"
-            android:backgroundTint="#FF5722"
-            android:textColor="#FFFFFF"
-            android:layout_marginEnd="8dp"/>
-
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Delete"
-            android:backgroundTint="#FF5722"
-            android:textColor="#FFFFFF"
-            android:layout_marginStart="8dp"/>
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
