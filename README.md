@@ -26,7 +26,7 @@ Recipe Collection App is an Android mobile application that allows users to stor
 | -------------- | ------------ | ------------ |
 | RSR Ranathunga | ICT/2022/139 | 5740         |
 | DVTR Vitharana | ICT/2022/141 | 5742         |
-| Member 3       | XXXXXXXXX    | Index        |
+| M.M.P Asma     | ICT/2022/138 | 5739         |
 
 
 ## Module
