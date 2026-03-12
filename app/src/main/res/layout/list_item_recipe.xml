@@ -44,4 +44,23 @@
             android:textColor="#A0A0A0"
             android:textSize="14sp" />
     </LinearLayout>
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/bg_glass_edittext"> <TextView
+    android:id="@+id/tvRowRecipeName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Recipe Name Here"
+    android:textColor="#FFFFFF" android:textSize="20sp"
+    android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvRowTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Time: 30 Mins"
+        android:textColor="#A0A0A0" android:textSize="14sp" />
+
 </LinearLayout>
