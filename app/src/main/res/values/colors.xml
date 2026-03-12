@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_dark_main">#1A1A1A</color>
+    <color name="bg_card_dark">#242424</color>
+    <color name="accent_orange">#E67E22</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A0A0A0</color>
+    <color name="star_color">#FFC107</color>
+</resources>
